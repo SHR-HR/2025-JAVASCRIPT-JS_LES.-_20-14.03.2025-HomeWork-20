@@ -37,12 +37,14 @@
 
 
 
+// --------------------------------------------------------------------------------------------------------
 const form = document.getElementById('registrationForm');
 const avatarInput = document.getElementById('avatar');
 const userDataDisplay = document.getElementById('userDataDisplay');
 const toggleThemeButton = document.getElementById('toggle-theme');
 const modal = document.getElementById('modal');
 const closeModalButton = document.getElementById('close-modal');
+
 // --------------------------------------------------------------------------------------------------------
 // === Темный режим ===
 if (localStorage.getItem('theme') === 'dark') {
@@ -53,6 +55,7 @@ toggleThemeButton.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
     localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
 });
+
 // --------------------------------------------------------------------------------------------------------
 // === Загрузка данных из куков ===
 document.addEventListener('DOMContentLoaded', () => {
@@ -67,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     modal.classList.remove('show');
 });
+
 // --------------------------------------------------------------------------------------------------------
 // === Сохранение данных ===
 form.addEventListener('submit', (e) => {
@@ -97,6 +101,7 @@ form.addEventListener('submit', (e) => {
         saveData(formData);
     }
 });
+
 // --------------------------------------------------------------------------------------------------------
 // === Установка данных в LocalStorage и куки ===
 function saveData(data) {
@@ -117,6 +122,7 @@ function saveData(data) {
     displayUserData(data);
     showModal('✅ Данные успешно сохранены!');
 }
+
 // --------------------------------------------------------------------------------------------------------
 // === Загрузка данных из куков ===
 function getCookie(name) {
@@ -139,6 +145,7 @@ function loadDataFromCookies() {
         displayUserData(data);
     }
 }
+
 // --------------------------------------------------------------------------------------------------------
 // === Заполнение формы ===
 function fillForm(data) {
@@ -152,6 +159,7 @@ function fillForm(data) {
         document.getElementById('userAvatar').src = data.avatar;
     }
 }
+
 // --------------------------------------------------------------------------------------------------------
 // === Отображение данных пользователя ===
 function displayUserData(data) {
@@ -167,6 +175,7 @@ function displayUserData(data) {
 
     userDataDisplay.classList.remove('hidden');
 }
+
 // --------------------------------------------------------------------------------------------------------
 // === Валидация формы ===
 function validateForm() {
@@ -215,6 +224,7 @@ function validateForm() {
 
     return isValid;
 }
+
 // --------------------------------------------------------------------------------------------------------
 // === Очистка данных ===
 function clearData() {
@@ -230,6 +240,7 @@ function clearData() {
 
     userDataDisplay.classList.add('hidden');
 }
+
 // --------------------------------------------------------------------------------------------------------
 // === Модальное окно ===
 function showModal(message) {
@@ -242,13 +253,12 @@ function showModal(message) {
 function closeModal() {
     modal.classList.remove('show');
 }
+
 // --------------------------------------------------------------------------------------------------------
 // ✅ Закрытие по кнопке и клику вне области
 closeModalButton.addEventListener('click', closeModal);
 modal.addEventListener('click', (e) => {
     if (e.target === modal) closeModal();
 });
-
-
 
 
