@@ -1,0 +1,44 @@
+/* Светлая тема */
+body {
+    background-color: #f5f5f5;
+    color: #222;
+    font-family: Arial, sans-serif;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Темная тема */
+body.dark-mode {
+    background-color: #222;
+    color: #f5f5f5;
+}
+
+.dark-mode button {
+    background-color: #555;
+}
+
+.dark-mode button:hover {
+    background-color: #666;
+}
+
+
+
+
