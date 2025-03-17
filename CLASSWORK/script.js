@@ -41,89 +41,124 @@
 
 
 // ====== ДАННЫЕ ПОЛЬЗОВАТЕЛЯ (COOKIE) ======
-function saveUserData() {
-    const name = document.getElementById('name').value.trim();
-    const phone = document.getElementById('phone').value.trim() || 'не указан';
-    const age = document.getElementById('age').value.trim() || 'не указан';
 
+function saveUserData() {
+    // Получаем данные из полей формы и убираем пробелы по краям с помощью trim()
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim() || 'не указан'; // Если пустое значение — подставляем "не указан"
+    const age = document.getElementById('age').value.trim() || 'не указан'; // Аналогично с возрастом
+
+    // Если имя введено (обязательно), то сохраняем данные в cookies
     if (name) {
+        // Устанавливаем cookie с именем пользователя
         document.cookie = `name=${encodeURIComponent(name)}; path=/`;
+        // Устанавливаем cookie с телефоном
         document.cookie = `phone=${encodeURIComponent(phone)}; path=/`;
+        // Устанавливаем cookie с возрастом
         document.cookie = `age=${encodeURIComponent(age)}; path=/`;
+        
+        // Обновляем приветственное сообщение
         updateGreeting();
+        // Показываем сообщение пользователю через модальное окно
         showModal(`Данные сохранены успешно, ${name}`);
     }
 }
 
 function getCookie(name) {
+    // Используем регулярное выражение для поиска значения cookie по имени
     const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    // Если совпадение найдено, возвращаем значение cookie (декодированное)
     return match ? decodeURIComponent(match[2]) : null;
 }
 
 function updateGreeting() {
+    // Получаем данные из cookie (если их нет — используем значение по умолчанию)
     const name = getCookie('name') || 'гость';
     const phone = getCookie('phone') || 'не указан';
     const age = getCookie('age') || 'не указан';
+    
+    // Обновляем содержимое приветственного сообщения на странице
     document.getElementById('greeting').innerText = `👋 Привет, ${name}! Телефон: ${phone}, Возраст: ${age}`;
 }
 
+
+
 // ====== АВТОРИЗАЦИЯ (LOCALSTORAGE) ======
+
 function login() {
+    // Сохраняем значение авторизации в LocalStorage (значение "true" как строка)
     localStorage.setItem('auth', 'true');
+    // Убираем класс hidden, чтобы показать панель администратора
     document.getElementById('adminPanel').classList.remove('hidden');
 }
 
 function logout() {
+    // Удаляем ключ авторизации из LocalStorage
     localStorage.removeItem('auth');
+    // Добавляем класс hidden, чтобы скрыть панель администратора
     document.getElementById('adminPanel').classList.add('hidden');
 }
 
+
 // ====== НАСТРОЙКИ ТЕКСТА ======
+
 function saveTextSettings() {
+    // Получаем значения из полей формы
     const text = document.getElementById('textInput').value;
     const fontSize = document.getElementById('fontSize').value;
     const fontColor = document.getElementById('fontColor').value;
     const fontStyle = document.getElementById('fontStyle').value;
 
+    // Находим элемент, куда будет вставляться текст
     const output = document.getElementById('outputText');
+    
+    // Устанавливаем текст и его параметры
     output.innerText = text;
-    output.style.fontSize = `${fontSize}px`;
-    output.style.color = fontColor;
-    output.style.fontStyle = fontStyle;
+    output.style.fontSize = `${fontSize}px`; // Устанавливаем размер текста в пикселях
+    output.style.color = fontColor; // Устанавливаем цвет текста
+    output.style.fontStyle = fontStyle; // Устанавливаем стиль текста (курсив, жирный или обычный)
 }
 
+
 // ====== МОДАЛЬНОЕ ОКНО ======
-let modalTimeout;
+
+let modalTimeout; // Переменная для хранения таймера закрытия модального окна
 
 function showModal(message) {
+    // Получаем элемент модального окна и сообщение в нём
     const modal = document.getElementById('modal');
     const modalMessage = document.getElementById('modalMessage');
 
-    // Очищаем предыдущий таймер
+    // Очищаем предыдущий таймер, чтобы избежать конфликтов
     clearTimeout(modalTimeout);
 
+    // Устанавливаем текст сообщения в модальном окне
     modalMessage.innerText = message;
+    // Убираем класс hidden, чтобы показать окно
     modal.classList.remove('hidden');
 
-    // Устанавливаем таймер на автоматическое закрытие
+    // Устанавливаем таймер для автоматического закрытия через 3 секунды
     modalTimeout = setTimeout(() => {
         closeModal();
     }, 3000);
 }
 
 function closeModal() {
+    // Получаем элемент модального окна
     const modal = document.getElementById('modal');
+    // Добавляем класс hidden, чтобы скрыть окно
     modal.classList.add('hidden');
+    // Очищаем таймер (на всякий случай)
     clearTimeout(modalTimeout);
 }
 
-// Добавляем обработчик события для закрытия по клику за пределами окна
+
+// ====== ОБРАБОТЧИК СОБЫТИЙ ДЛЯ ЗАКРЫТИЯ МОДАЛЬНОГО ОКНА ======
+
+// Добавляем обработчик события для закрытия при клике по фону
 document.getElementById('modal').addEventListener('click', closeModal);
 
+// Добавляем обработчик события для предотвращения закрытия при клике по содержимому окна
 document.querySelector('.modal-content').addEventListener('click', (event) => {
-    event.stopPropagation(); // Предотвращаем закрытие при клике по самому окну
+    event.stopPropagation(); // Останавливаем всплытие события, чтобы окно не закрылось
 });
-
-
-
-

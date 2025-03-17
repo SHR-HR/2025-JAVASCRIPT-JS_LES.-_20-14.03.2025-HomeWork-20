@@ -40,90 +40,115 @@
 
 
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f2f5;
-    padding: 20px;
+/* ==============================
+   Общие стили для страницы
+   ============================== */
+   body {
+    font-family: Arial, sans-serif; /* Устанавливаем шрифт для всей страницы */
+    background-color: #f0f2f5; /* Устанавливаем фоновый цвет страницы */
+    padding: 20px; /* Добавляем внутренний отступ вокруг содержимого страницы */
 }
 
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+
+/* ==============================
+   Контейнер для размещения блоков
+   ============================== */
+   .container {
+    display: flex; /* Используем Flexbox для удобного расположения элементов */
+    flex-wrap: wrap; /* Разрешаем перенос элементов на новую строку при нехватке места */
+    gap: 20px; /* Добавляем расстояние между элементами в контейнере */
 }
 
-.section {
-    background-color: #fff;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    flex: 1;
-    min-width: 300px;
+
+/* ==============================
+   Общий стиль для секций
+   ============================== */
+   .section {
+    background-color: #fff; /* Белый фон для секций */
+    padding: 20px; /* Внутренний отступ внутри секции */
+    border: 1px solid #ddd; /* Тонкая серая рамка */
+    border-radius: 8px; /* Закругляем углы */
+    flex: 1; /* Растягиваем блок на всю доступную ширину */
+    min-width: 300px; /* Минимальная ширина блока — 300px */
 }
 
-.output {
-    flex-basis: 40%;
+
+/* ==============================
+   Блок вывода данных
+   ============================== */
+   .output {
+    flex-basis: 40%; /* Устанавливаем ширину блока вывода в 40% от ширины контейнера */
 }
 
-button {
-    background-color: #4caf50;
-    color: white;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-    margin-top: 10px;
-    margin-right: 5px;
-    transition: background 0.3s;
+
+/* ==============================
+   Стили для кнопок
+   ============================== */
+   button {
+    background-color: #4caf50; /* Цвет фона кнопки (зелёный) */
+    color: white; /* Цвет текста — белый */
+    padding: 10px; /* Внутренний отступ в кнопке */
+    border: none; /* Убираем рамку */
+    cursor: pointer; /* Изменяем курсор при наведении */
+    margin-top: 10px; /* Добавляем небольшой отступ сверху */
+    margin-right: 5px; /* Отступ между кнопками */
+    transition: background 0.3s; /* Плавное изменение фона при наведении */
 }
 
+/* Эффект при наведении на кнопку */
 button:hover {
-    background-color: #45a049;
+    background-color: #45a049; /* Темно-зелёный цвет при наведении */
 }
 
-.hidden {
-    display: none;
+
+/* ==============================
+   Скрытые элементы (display: none)
+   ============================== */
+   .hidden {
+    display: none; /* Полностью скрываем элемент */
 }
+
 
 /* Модальное окно */
-.modal {
-    position: fixed;
+
+
+/* ==============================
+   Стили для модального окна
+   ============================== */
+   .modal {
+    position: fixed; /* Фиксируем позицию на экране */
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
-    transition: opacity 0.3s ease;
+    width: 100vw; /* Ширина на весь экран */
+    height: 100vh; /* Высота на весь экран */
+    background-color: rgba(0, 0, 0, 0.6); /* Полупрозрачный тёмный фон */
+    display: flex; /* Flexbox для центрирования содержимого */
+    align-items: center; /* Центрируем содержимое по вертикали */
+    justify-content: center; /* Центрируем содержимое по горизонтали */
+    z-index: 100; /* Помещаем окно поверх других элементов */
+    transition: opacity 0.3s ease; /* Плавное появление и исчезновение */
 }
 
-.modal.hidden {
-    opacity: 0;
-    pointer-events: none;
+
+/* ==============================
+   Скрытие модального окна через класс hidden
+   ============================== */
+   .modal.hidden {
+    opacity: 0; /* Делаем модальное окно прозрачным */
+    pointer-events: none; /* Отключаем возможность взаимодействия с элементами */
 }
 
-.modal-content {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+
+/* ==============================
+   Содержимое модального окна
+   ============================== */
+   .modal-content {
+    background-color: #ffffff; /* Белый фон для содержимого модального окна */
+    padding: 20px; /* Внутренний отступ */
+    border-radius: 8px; /* Закругляем углы */
+    text-align: center; /* Выравнивание текста по центру */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Тень для создания эффекта глубины */
 }
 
-button {
-    background-color: #4caf50;
-    color: white;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-    margin-top: 10px;
-    margin-right: 5px;
-    transition: background 0.3s;
-}
 
-button:hover {
-    background-color: #45a049;
-}
 
